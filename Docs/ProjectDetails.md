@@ -60,3 +60,9 @@ This is a dating app focused on college/university students. Get recommended mat
     - major
     - City
 
+- Build System
+    - Project: Maven 3.9.x +
+    - Language: Java 21+
+    - Packaging: Jar
+    - Spring boot version: 4.10
+    
