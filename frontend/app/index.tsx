@@ -1,5 +1,6 @@
 import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
+import { colors, fontSizes, spacing } from "../constants/theme";
 
 export default function WelcomeScreen() {
   return (
@@ -23,21 +24,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 24,
+    backgroundColor: colors.background,
+    padding: spacing.large,
   },
   title: {
-    fontSize: 40,
+    color: colors.primary,
+    fontSize: fontSizes.display,
     fontWeight: "bold",
   },
   subtitle: {
-    fontSize: 16,
-    marginTop: 8,
-    marginBottom: 32,
+    color: colors.mutedText,
+    fontSize: fontSizes.body,
+    marginTop: spacing.small,
+    marginBottom: spacing.extraLarge,
     textAlign: "center",
   },
   link: {
-    fontSize: 18,
-    marginVertical: 10,
-    color: "#7C3AED",
+    color: colors.primary,
+    fontSize: fontSizes.subtitle,
+    marginBottom: spacing.medium,
   },
 });
