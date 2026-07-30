@@ -3,6 +3,9 @@ package com.convio.backend.jdbc;
 import java.util.Optional;
 import java.util.UUID;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,7 +27,7 @@ public class JdbcUserRepository implements UserRepository{
     public Iterable<User> findAll() {
         return jdbcTemplate.query(
             "select id, universityId, universityEmail, email_verified from Users"
-        )
+        );
     }
 
     @Override
@@ -65,4 +68,14 @@ public class JdbcUserRepository implements UserRepository{
 
 
 
+    private User mapRowToUser(ResultSet row, int rowNum) throws SQLException{
+        return new User(
+            
+            row.getString("universityId"),
+            row.getString("universityEmail"),
+            row.getBoolean("email_verified")
+
+        )
+
+    }
 }
