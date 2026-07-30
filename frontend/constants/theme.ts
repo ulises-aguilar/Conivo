@@ -6,7 +6,7 @@ export const colors = {
     surface: "#F5F3FF", // Cards/Forms on top of the background
 
     text: "#171717",
-    mutedText: "#737373",
+    secondaryText: "#737373",
 
     border: "#E5E5E5",
     error: "#DC2626",
