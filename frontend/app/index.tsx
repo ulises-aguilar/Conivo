@@ -1,20 +1,27 @@
-import { Link } from "expo-router";
+import { router } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
+import { colors, fontSizes, spacing } from "../constants/theme";
+import PrimaryButton from "@/components/PrimaryButton";
+import ScreenContainer from "@/components/ScreenContainer";
 
 export default function WelcomeScreen() {
   return (
-    <View style={styles.container}>
+    <ScreenContainer style={styles.container}>
       <Text style={styles.title}>Convio</Text>
       <Text style={styles.subtitle}>Connect with people at your college.</Text>
+      
+      <PrimaryButton
+        title= "Create Account"
+        onPress={() => router.push("/auth/register")}
+      />
 
-      <Link href="/auth/login" style={styles.link}>
-        Log in
-      </Link>
-
-      <Link href="/auth/register" style={styles.link}>
-        Create account
-      </Link>
-    </View>
+      <Text
+        style={styles.login}
+        onPress={() => router.push("/auth/login")}
+      >
+        Already have an account? Log in
+      </Text>
+    </ScreenContainer>
   );
 }
 
@@ -23,21 +30,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 24,
+    backgroundColor: colors.background,
+    padding: spacing.large,
   },
   title: {
-    fontSize: 40,
+    color: colors.primary,
+    fontSize: fontSizes.display,
     fontWeight: "bold",
   },
   subtitle: {
-    fontSize: 16,
-    marginTop: 8,
-    marginBottom: 32,
+    color: colors.secondaryText,
+    fontSize: fontSizes.body,
+    marginTop: spacing.small,
+    marginBottom: spacing.extraLarge,
     textAlign: "center",
   },
-  link: {
-    fontSize: 18,
-    marginVertical: 10,
-    color: "#7C3AED",
+  login: {
+    color: colors.primary,
+    fontSize: fontSizes.body,
+    marginTop: spacing.large,
   },
 });
