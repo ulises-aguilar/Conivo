@@ -26,7 +26,8 @@ public class JdbcUserRepository implements UserRepository{
     @Override
     public Iterable<User> findAll() {
         return jdbcTemplate.query(
-            "select id, universityId, universityEmail, email_verified from Users"
+            "select id, universityId, universityEmail, email_verified from Users",
+
         );
     }
 
@@ -70,12 +71,10 @@ public class JdbcUserRepository implements UserRepository{
 
     private User mapRowToUser(ResultSet row, int rowNum) throws SQLException{
         return new User(
-            
+            row.getObject("id", UUID.class),
             row.getString("universityId"),
-            row.getString("universityEmail"),
-            row.getBoolean("email_verified")
+            row.getString("universityEmail")
 
-        )
-
+        );
     }
 }
