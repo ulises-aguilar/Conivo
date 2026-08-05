@@ -2,6 +2,7 @@ package com.convio.backend.jdbc;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,28 +28,47 @@ public class JdbcUserRepository implements UserRepository{
     public Iterable<User> findAll() {
         return jdbcTemplate.query(
             "select id, universityId, universityEmail, email_verified from Users",
-
-        );
+            this::mapRowToUser);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByEmail'");
+        List<User> results =  jdbcTemplate.query(
+        "select *, from Users where university ", 
+        this::mapRowToUser, 
+        email);
+
+        return results.size() == 0 ?
+        Optional.empty() :
+        Optional.of(results.get(0));
+        
     }
 
     @Override
     public Optional<User> findByUniId(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByUniId'");
+        List<User> results =  jdbcTemplate.query(
+        "select *, from Users where universityId= ? ", 
+        this::mapRowToUser, 
+        id);
+
+        return results.size() == 0 ? 
+        Optional.empty() :
+        Optional.of(results.get(0));
+         
     }
 
     @Override
     public Optional<User> findById(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
+        List<User> results =  jdbcTemplate.query(
+        "select *, from Users where id =  ? ", 
+        this::mapRowToUser, 
+        id);
 
+        return results.size() == 0 ? 
+        Optional.empty() :
+        Optional.of(results.get(0));
+    
+    }
     @Override
     public boolean update(User user) {
         // TODO Auto-generated method stub

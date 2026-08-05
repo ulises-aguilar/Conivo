@@ -2,10 +2,14 @@ package com.convio.backend.model;
 
 import java.util.UUID;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class User {
 
     private UUID id;
+    @NotBlank(message="University ID is required ")
     private String universityId;
+    @NotBlank(message="University email is required")
     private String universityEmail;
     private boolean email_verified;
 
