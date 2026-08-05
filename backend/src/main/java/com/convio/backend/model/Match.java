@@ -1,6 +1,5 @@
 package com.convio.backend.model;
 
-import com.convio.backend.model.User;
 import java.util.UUID;
 import java.time.LocalDateTime;
 
