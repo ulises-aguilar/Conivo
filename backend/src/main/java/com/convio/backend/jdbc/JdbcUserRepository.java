@@ -25,7 +25,7 @@ public class JdbcUserRepository implements UserRepository{
     }
 
     @Override
-    public Iterable<User> findAll() {
+    public List<User> findAll() {
         return jdbcTemplate.query(
             "select id, universityId, universityEmail, email_verified from Users",
             this::mapRowToUser);
