@@ -13,8 +13,8 @@ public interface UserRepository {
     Optional<User> findById(UUID id);
 
     boolean update(User user);
-    User save(User user);
-    boolean delete(UUID id);
+    boolean save(User user);
+    boolean delete(User user);
 
 
 }

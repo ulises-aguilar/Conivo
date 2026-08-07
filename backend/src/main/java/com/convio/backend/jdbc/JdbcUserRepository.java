@@ -71,22 +71,53 @@ public class JdbcUserRepository implements UserRepository{
     }
     @Override
     public boolean update(User user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        
+        jdbcTemplate.update(
+            """
+            UPDATE Users SET university_id = ?,
+            university_email = ?,
+            email_verfied = ? 
+            WHERE id = ?"
+            """, 
+            user.getUniversityId(),
+            user.getUniversityEmail(),
+            user.getEmail_verified(),
+            user.getId()
+        );
+
+        return true;
     }
 
     @Override
-    public User save(User user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public boolean save(User user) {
+        jdbcTemplate.update(
+            """
+            INSERT into USERS (id, universityId, universityEmail, email_verified)
+            values (?,?,?,?)
+            """,
+            user.getId(),
+            user.getUniversityId(),
+            user.getUniversityEmail(),
+            user.getEmail_verified()
+        );
+
+        return true;
+
     }
 
     @Override
-    public boolean delete(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
+    public boolean delete(User user) {
 
+        jdbcTemplate.update(
+            """
+            DELETE from Users 
+            WHERE id = ?
+            """,
+            user.getId()
+        );
+
+        return true;
+    }
 
 
     private User mapRowToUser(ResultSet row, int rowNum) throws SQLException{
