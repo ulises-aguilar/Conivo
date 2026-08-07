@@ -60,7 +60,7 @@ public class JdbcUserRepositoryTest {
     @Test
     void returnUserByEmail(){
         Optional<User> user = repository.findByEmail("john@ewu.edu");
-        assertEquals("john@ewu.edu", user.get().getUniversityId());
+        assertEquals("john@ewu.edu", user.get().getUniversityEmail());
 
 
     }
@@ -87,9 +87,9 @@ public class JdbcUserRepositoryTest {
     @Test
     void saveUserToDatabase(){
         User user3 = new User(UUID.randomUUID(), "67", "newUser@ewu.edu");
-        List<User> results = repository.findAll();
 
         repository.save(user3);
+        List<User> results = repository.findAll();
 
         assertEquals(3, results.size());
 
@@ -98,9 +98,9 @@ public class JdbcUserRepositoryTest {
     @Test
     void DeleteUser(){
 
-        List<User> results = repository.findAll();
 
         repository.delete(user1 );
+        List<User> results = repository.findAll();
 
         assertEquals(1, results.size());
     }

@@ -74,9 +74,9 @@ public class JdbcUserRepository implements UserRepository{
         
         jdbcTemplate.update(
             """
-            UPDATE Users SET university_id = ?,
-            university_email = ?,
-            email_verfied = ? 
+            UPDATE Users SET universityId = ?,
+            universityEmail = ?,
+            email_verified = ? 
             WHERE id = ?"
             """, 
             user.getUniversityId(),
