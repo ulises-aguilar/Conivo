@@ -27,14 +27,14 @@ public class JdbcUserRepository implements UserRepository{
     @Override
     public List<User> findAll() {
         return jdbcTemplate.query(
-            "select id, universityId, universityEmail, email_verified from Users",
+            "SELECT id, universityId, universityEmail, email_verified from Users",
             this::mapRowToUser);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
         List<User> results =  jdbcTemplate.query(
-        "select *, from Users where university ", 
+        "SELECT * from Users WHERE universityEmail = ?", 
         this::mapRowToUser, 
         email);
 
@@ -47,7 +47,7 @@ public class JdbcUserRepository implements UserRepository{
     @Override
     public Optional<User> findByUniId(String id) {
         List<User> results =  jdbcTemplate.query(
-        "select *, from Users where universityId= ? ", 
+        "SELECT * from Users WHERE universityId= ? ", 
         this::mapRowToUser, 
         id);
 
@@ -60,7 +60,7 @@ public class JdbcUserRepository implements UserRepository{
     @Override
     public Optional<User> findById(UUID id) {
         List<User> results =  jdbcTemplate.query(
-        "select *, from Users where id =  ? ", 
+        "select * from Users where id =  ? ", 
         this::mapRowToUser, 
         id);
 
@@ -74,10 +74,10 @@ public class JdbcUserRepository implements UserRepository{
         
         jdbcTemplate.update(
             """
-            UPDATE Users SET universityId = ?,
+            UPDATE USERS SET universityId = ?,
             universityEmail = ?,
             email_verified = ? 
-            WHERE id = ?"
+            WHERE id = ?
             """, 
             user.getUniversityId(),
             user.getUniversityEmail(),
