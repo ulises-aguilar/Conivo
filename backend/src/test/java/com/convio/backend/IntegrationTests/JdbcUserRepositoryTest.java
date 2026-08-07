@@ -100,7 +100,7 @@ public class JdbcUserRepositoryTest {
 
         List<User> results = repository.findAll();
 
-        repository.delete(user1.getId());
+        repository.delete(user1 );
 
         assertEquals(1, results.size());
     }
