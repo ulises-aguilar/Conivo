@@ -22,6 +22,13 @@ public class User {
         this.email_verified = false;
     }
 
+    public User(UUID id, String universityId, String universityEmail, boolean verified){
+        this.id = id;
+        this.universityId = universityId;
+        this.universityEmail = universityEmail;
+        this.email_verified = verified;
+    }
+
     public UUID getId(){return id;}
 
     public void setId(UUID id){this.id = id;}

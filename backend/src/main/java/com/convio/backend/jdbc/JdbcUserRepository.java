@@ -120,11 +120,17 @@ public class JdbcUserRepository implements UserRepository{
     }
 
 
+    /**
+     * This method will recieve data. It will then parse the row and
+     * convert the data to a User object
+     * @return - A User object
+    **/
     private User mapRowToUser(ResultSet row, int rowNum) throws SQLException{
         return new User(
             row.getObject("id", UUID.class),
             row.getString("universityId"),
-            row.getString("universityEmail")
+            row.getString("universityEmail"),
+            row.getBoolean("email_verified")
 
         );
     }
