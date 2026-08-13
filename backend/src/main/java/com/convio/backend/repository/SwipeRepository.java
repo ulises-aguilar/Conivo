@@ -4,12 +4,14 @@ import com.convio.backend.model.Swipe;
 
 import java.util.UUID;
 import java.util.Optional;
+import java.util.List;
 
 public interface SwipeRepository {
 
     Iterable<Swipe> findAll();
     Optional<Swipe> findBySwiper(UUID id);
     Optional<Swipe> findByTarget(UUID id);
+    List<Swipe> findMatchBySwiperId(UUID id);
     
     boolean update(Swipe swipe);
     boolean save(Swipe swipe);
