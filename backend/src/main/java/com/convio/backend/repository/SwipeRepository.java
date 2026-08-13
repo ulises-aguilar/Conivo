@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SwipeRepository {
 
-    Iterable<Swipe> findAll();
+    List<Swipe> findAll();
     Optional<Swipe> findBySwiper(UUID id);
     Optional<Swipe> findByTarget(UUID id);
     List<Swipe> findMatchBySwiperId(UUID id);
