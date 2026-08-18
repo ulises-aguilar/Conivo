@@ -41,8 +41,7 @@ public class JdbcSwipeRepository implements SwipeRepository{
 
         return jdbcTemplate.query(
             """
-            SELECT id,
-                swiper_id,
+            SELECT swiper_id,
                 target_id,
                 decision
             FROM swipes
@@ -58,8 +57,7 @@ public class JdbcSwipeRepository implements SwipeRepository{
 
         return jdbcTemplate.query(
         """
-        SELECT id,
-               swiper_id,
+        SELECT swiper_id,
                target_id,
                decision
         FROM swipes

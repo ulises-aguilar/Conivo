@@ -96,7 +96,7 @@ public class JdbcSwipeRepositoryTest {
 
         List<Swipe> result = repository.findAll();
 
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
     }
 
 
