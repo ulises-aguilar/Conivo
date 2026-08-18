@@ -1,9 +1,9 @@
 package com.convio.backend.IntegrationTests;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.convio.backend.jdbc.JdbcSwipeRepository;
+import com.convio.backend.jdbc.JdbcUserRepository;
 import com.convio.backend.model.User;
 import com.convio.backend.model.Swipe;
 
@@ -28,6 +28,9 @@ public class JdbcSwipeRepositoryTest {
 
     @Autowired
     private JdbcSwipeRepository repository;
+
+    @Autowired
+    private JdbcUserRepository userRepository;
 
     private User user1;
     private User user2;
@@ -76,9 +79,15 @@ public class JdbcSwipeRepositoryTest {
         true
         );
 
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
+
         repository.save(swipe1);
         repository.save(swipe2);
         repository.save(swipe3);
+
+
 
     }
 
