@@ -75,14 +75,13 @@ public class JdbcSwipeRepository implements SwipeRepository{
         int rowsAffected = jdbcTemplate.update(
         """
         UPDATE swipes
-        SET target_id = ?,
-            decision = ?
+        SET decision = ?
         WHERE swiper_id = ?
+        AND target_id = ?
         """,
-        swipe.getSwiper(),
-        swipe.getTarget(),
         swipe.getDecision(),
-        swipe.getSwiper()
+        swipe.getSwiper(),
+        swipe.getTarget()
     );
 
     return true;

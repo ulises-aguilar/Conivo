@@ -105,7 +105,7 @@ public class JdbcSwipeRepositoryTest {
 
         List<Swipe> result = repository.findBySwiper(user1.getId());
 
-        assertEquals(2, result);
+        assertEquals(3, result.size());
 
         for (Swipe swipe: result){
             assertEquals(user1.getId(), swipe.getSwiper());
@@ -116,10 +116,10 @@ public class JdbcSwipeRepositoryTest {
     void findByTarget(){
         List<Swipe> result = repository.findByTarget(user3.getId());
 
-        assertEquals(2, result);
+        assertEquals(2, result.size());
 
          for (Swipe swipe: result){
-            assertEquals(user3.getId(), swipe.getSwiper());
+            assertEquals(user3.getId(), swipe.getTarget());
         }
     }
 
