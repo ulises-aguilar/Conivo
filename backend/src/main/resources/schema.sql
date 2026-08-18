@@ -5,3 +5,16 @@ CREATE TABLE IF NOT EXISTS users (
     universityEmail VARCHAR(20) NOT NULL UNIQUE,
     email_verified BOOLEAN NOT NULL
 );
+
+
+CREATE TABLE IF NOT EXISTS swipes (
+
+    swiper_id UUID NOT NULL,
+    target_id UUID NOT NULL,
+    decision BOOLEAN NOT NULL,
+
+    PRIMARY KEY (swiper_id, target_id),
+
+    FOREIGN KEY (swiper_id) REFERENCES users(id),
+    FOREIGN KEY (target_id) REFERENCES users(id)
+);

@@ -24,7 +24,7 @@ public class Swipe {
     public boolean getDecision(){return this.decision;}
 
     //Setters
-    public void setSwiper(UUID id){this.swiper_id = id;}
+    public void  setSwiper(UUID id){this.swiper_id = id;}
     public void setTarget(UUID id){this.target_id = id;}
     public void setDecision(boolean decision){this.decision = decision;}
 }

@@ -1,5 +1,8 @@
 package com.convio.backend.IntegrationTests;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.convio.backend.jdbc.JdbcSwipeRepository;
 import com.convio.backend.model.User;
 import com.convio.backend.model.Swipe;
@@ -13,6 +16,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.UUID;
 
@@ -30,6 +35,7 @@ public class JdbcSwipeRepositoryTest {
 
     private Swipe swipe1;
     private Swipe swipe2;
+    private Swipe swipe3;
 
     @BeforeEach
     void setup(){
@@ -64,22 +70,107 @@ public class JdbcSwipeRepositoryTest {
             true
         );
 
+        swipe3 = new Swipe(
+            user2.getId(),
+            user3.getId(),
+        true
+        );
 
-
-        @Test
-        void returnAllSwipes(){
-
-            List<Swipe> result = repository.findAll();
-
-            assertEquals(2, result.size());
-        }
-
-
-
-
-
+        repository.save(swipe1);
+        repository.save(swipe2);
+        repository.save(swipe3);
 
     }
 
+    @Test
+    void returnAllSwipes(){
+
+        List<Swipe> result = repository.findAll();
+
+        assertEquals(2, result.size());
+    }
+
+
+    @Test
+    void findSwiperById(){
+
+        List<Swipe> result = repository.findBySwiper(user1.getId());
+
+        assertEquals(2, result);
+
+        for (Swipe swipe: result){
+            assertEquals(user1.getId(), swipe.getSwiper());
+        }
+    }
+
+    @Test
+    void findByTarget(){
+        List<Swipe> result = repository.findByTarget(user3.getId());
+
+        assertEquals(2, result);
+
+         for (Swipe swipe: result){
+            assertEquals(user3.getId(), swipe.getSwiper());
+        }
+    }
+
+    @Test
+    void updateSwipe() {
+
+        swipe1.setDecision(true);
+
+        repository.update(swipe1);
+
+        List<Swipe> results = repository.findBySwiper(user1.getId());
+
+        for (Swipe swipe : results) {
+            if (swipe.getTarget().equals(user2.getId())) {
+                assertTrue(swipe.getDecision());
+            }
+        }
+    }
+
+    @Test
+    void saveSwipe() {
+
+        Swipe swipe4 = new Swipe(
+            user3.getId(),
+            user1.getId(),
+            false
+        );
+
+        repository.save(swipe4);
+
+        List<Swipe> results = repository.findAll();
+
+        assertEquals(4, results.size());
+    }
+
+    @Test
+    void deleteSwipe() {
+
+        repository.delete(swipe1);
+
+        List<Swipe> results = repository.findAll();
+
+        assertEquals(2, results.size());
+
+        for (Swipe swipe : results) {
+            assertFalse(
+                swipe.getSwiper().equals(user1.getId()) &&
+                swipe.getTarget().equals(user2.getId())
+            );
+        }
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
