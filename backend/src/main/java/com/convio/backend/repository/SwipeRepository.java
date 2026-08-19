@@ -3,17 +3,17 @@ package com.convio.backend.repository;
 import com.convio.backend.model.Swipe;
 
 import java.util.UUID;
-import java.util.Optional;
+import java.util.List;
 
 public interface SwipeRepository {
 
-    Iterable<Swipe> findAll();
-    Optional<Swipe> findBySwiper(UUID id);
-    Optional<Swipe> findByTarget(UUID id);
+    List<Swipe> findAll();
+    List<Swipe> findBySwiper(UUID id);
+    List<Swipe> findByTarget(UUID id);
     
-    boolean update(Swipe swipe);
-    boolean save(Swipe swipe);
-    boolean delete(Swipe swipe);
+    int update(Swipe swipe);
+    int save(Swipe swipe);
+    int delete(Swipe swipe);
 
 
 
