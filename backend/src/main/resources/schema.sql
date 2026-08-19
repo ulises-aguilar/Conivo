@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS swipes (
     swiper_id UUID NOT NULL,
     target_id UUID NOT NULL,
     decision BOOLEAN NOT NULL,
+    CHECK (swiper_id <> target_id)
 
     PRIMARY KEY (swiper_id, target_id),
 
