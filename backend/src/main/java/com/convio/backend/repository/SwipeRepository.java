@@ -11,9 +11,9 @@ public interface SwipeRepository {
     List<Swipe> findBySwiper(UUID id);
     List<Swipe> findByTarget(UUID id);
     
-    boolean update(Swipe swipe);
-    boolean save(Swipe swipe);
-    boolean delete(Swipe swipe);
+    int update(Swipe swipe);
+    int save(Swipe swipe);
+    int delete(Swipe swipe);
 
 
 

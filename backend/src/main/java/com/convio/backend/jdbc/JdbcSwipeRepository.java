@@ -70,9 +70,9 @@ public class JdbcSwipeRepository implements SwipeRepository{
     }
 
     @Override
-    public boolean update(Swipe swipe){
+    public int update(Swipe swipe){
 
-        int rowsAffected = jdbcTemplate.update(
+        return jdbcTemplate.update(
         """
         UPDATE swipes
         SET decision = ?
@@ -84,13 +84,12 @@ public class JdbcSwipeRepository implements SwipeRepository{
         swipe.getTarget()
     );
 
-    return true;
     }
 
     @Override
-    public boolean save(Swipe swipe){
+    public int save(Swipe swipe){
 
-        int rowsAffected = jdbcTemplate.update(
+        return jdbcTemplate.update(
         """
         INSERT INTO swipes
         (swiper_id, target_id, decision)
@@ -100,14 +99,12 @@ public class JdbcSwipeRepository implements SwipeRepository{
         swipe.getTarget(),
         swipe.getDecision()
         );
-
-        return true;
     }
 
     @Override
-    public boolean delete(Swipe swipe){
+    public int delete(Swipe swipe){
         
-        int rowsAffected = jdbcTemplate.update(
+        return jdbcTemplate.update(
         """
         DELETE FROM swipes
         WHERE swiper_id = ?
@@ -117,7 +114,6 @@ public class JdbcSwipeRepository implements SwipeRepository{
         swipe.getTarget()
     );
 
-    return true;
     }
 
 
