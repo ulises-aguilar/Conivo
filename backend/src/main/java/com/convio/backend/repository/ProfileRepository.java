@@ -2,21 +2,21 @@ package com.convio.backend.repository;
 
 import com.convio.backend.model.Profile;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface ProfileRepository {
 
-    Iterable<Profile> findAll();
-    Optional<Profile> findByUser_id();
-    Optional<Profile> findByName();
-    Optional<Profile> findByDob();
-    Optional<Profile> findByGender();
-    Optional<Profile> findByCity();
-    Optional<Profile> findByMajor();
+    List<Profile> findAll();
+    List<Profile> findByUser_id();
+    List<Profile> findByName();
+    List<Profile> findByDob();
+    List<Profile> findByGender();
+    List<Profile> findByCity();
+    List<Profile> findByMajor();
 
-    boolean update(Profile profile);
-    boolean save(Profile profile);
-    boolean delete(Profile profile);
+    int update(Profile profile);
+    int save(Profile profile);
+    int delete(Profile profile);
 
 
 }
