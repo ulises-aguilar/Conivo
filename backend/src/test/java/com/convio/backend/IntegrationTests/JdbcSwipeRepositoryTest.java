@@ -128,7 +128,9 @@ public class JdbcSwipeRepositoryTest {
 
         swipe1.setDecision(true);
 
-        repository.update(swipe1);
+        int rows = repository.update(swipe1);
+
+        assertEquals(1, rows);
 
         List<Swipe> results = repository.findBySwiper(user1.getId());
 
@@ -148,7 +150,9 @@ public class JdbcSwipeRepositoryTest {
             false
         );
 
-        repository.save(swipe4);
+        int rows = repository.save(swipe4);
+
+        assertEquals(1, rows);
 
         List<Swipe> results = repository.findAll();
 
@@ -158,7 +162,9 @@ public class JdbcSwipeRepositoryTest {
     @Test
     void deleteSwipe() {
 
-        repository.delete(swipe1);
+        int rows = repository.delete(swipe1);
+
+        assertEquals(1, rows);
 
         List<Swipe> results = repository.findAll();
 
