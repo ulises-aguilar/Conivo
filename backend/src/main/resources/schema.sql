@@ -19,3 +19,15 @@ CREATE TABLE IF NOT EXISTS swipes (
     FOREIGN KEY (swiper_id) REFERENCES users(id),
     FOREIGN KEY (target_id) REFERENCES users(id)
 );
+
+CREATE TABLE IF not EXISTS profiles (
+    user_id UUID PRIMARY KEY,
+    name VARCHAR(25) NOT NULL,
+    DOB DATE NOT NULL,
+    bio VARCHAR(75),
+    gender VARCHAR(20) NOT NULL,
+    major VARCHAR(20) NOT NULL,
+    city VARCHAR(20) NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)
